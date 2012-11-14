@@ -1,5 +1,9 @@
 var phantom = require('phantom');
 var config = require('./config');
+var mongodb = require('mongodb')
+  , db = new Db('pdjBot', new mongodb.Server('127.0.0.1', 27017, {}), {}).open(function(err, client) {
+    
+  });
 var smiffJSON = require('./smiff.json');
 
 config.port = 6969;
