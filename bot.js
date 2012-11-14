@@ -2,6 +2,13 @@ var phantom = require('phantom');
 var config = require('./config');
 var smiffJSON = require('./smiff.json');
 
+config.port = 6969;
+
+var io = require('socket.io').listen( config.port );
+io.sockets.on('connection', function(socket) {
+  socket.emit('join', { hello: 'world' } );
+});
+
 phantom.create(function(ph) {
   console.log('start');
   
@@ -23,7 +30,7 @@ phantom.create(function(ph) {
         
           var url = window.location.href;
            
-          if (url === 'http://www.plug.dj/')
+          if (url === 'http://www.plug.dj/') 
           {
             if (0 != $('#twitter').length)
             {
@@ -67,7 +74,13 @@ phantom.create(function(ph) {
             {
               window.jarplug = {};
               window.djData = [];
+              window.internalSocket = io.connect('http://localhost:' + config.port);
               console.log("-|-|-|-|-Bot Ready-|-|-|-|-");
+              internalSocket.emit('join', { hello: 'world' } );
+              internalSocket.on('join', function(data) {
+                console.log('event received from socket.io:');
+                console.log(data);
+              });
               
               Playback.streamDisabled=true;
               Playback.stop();

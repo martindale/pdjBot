@@ -16,7 +16,8 @@
     "node": ">=v0.4.9"
   },
   "dependencies": {
-    "phantom": "<=0.3.5"
+    "phantom": "<=0.3.5",
+    "socket.io": ">=0.9.11"
   },
   "devDependencies": {
     "phantom": "<=0.3.5"
