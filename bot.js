@@ -25,14 +25,16 @@ bot.on('chat', function(data) {
     if (token.substr(0, 1) === '!') {
       data.trigger = token.substr(1);
 
-      if (typeof(messages[data.trigger]) != 'undefined') {
-        bot.chat(messages[data.trigger]);
+      switch (typeof(messages[data.trigger])) {
+        case 'string':
+          bot.chat(messages[data.trigger]);
+        break;
+        case 'function':
+          messages[data.trigger].apply(bot, [ data ]);
+        break;
       }
-
     }
   });
-  
-  
 
 });
 
