@@ -15,6 +15,7 @@ Contributors:
     npm install
 
 Now copy config.js.sample to config.js and edit its values.
+Also, copy messages.js.sample to messages.js.  You can add commands here.
 
     node bot.js
 
