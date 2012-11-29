@@ -1,16 +1,15 @@
-var AUTH = 'YaWSYYaeHU6iREzpHbGoG7PbbKI=?_expires=STEzNjk3NTc3NzUKLg==&user_id=Uyc1MGFlYjQxOGMzYjk3YTJjYjRjMzIwY2MnCnAxCi4='; // Put your auth token here, it's the cookie value for usr
-var ROOM = 'coding-soundtrack';
+var config = require('./config')
+  , messages = require('./messages');
+
+
+var AUTH = config.auth; // Put your auth token here, it's the cookie value for usr
+var ROOM = config.room;
 
 var PlugAPI = require('plugapi'),
     repl = require('repl');
 
 var bot = new PlugAPI(AUTH);
 bot.connect(ROOM);
-
-var messages = {
-  snarl: "Ohaithar.  I'm a bot created by @remæus.  Blame him for any of my supposed mistakes."
-};
-
 
 bot.on('chat', function(data) {
 
